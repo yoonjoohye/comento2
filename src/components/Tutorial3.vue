@@ -1,11 +1,13 @@
 <template>
     <div id="tutorial3">
+        <!-- tutorial 3-1 -->
         <div class="tutorial3_1">당신은 {{this.$store.state.strength}}이(가) 뛰어나다는 것을 아래와 같이 정의하고 있습니다.</div>
         <div class="msg"> {{this.$store.state.message}}</div>
         <div class="btn3_1">
             <button type="button" class="before" @click="before3_1">수정하기</button>
             <button type="button" class="after3_1" @click="after3_1">다음단계</button>
         </div>
+        <!-- tutorial 3-2 -->
         <div class="tutorial3_2">
             <div class="experience_input">
                 <div>
@@ -17,9 +19,9 @@
                 </div>
                 <textarea v-model="content" placeholder="(상황) 동아리 연말 나눔행사의 예산 부족 문제 해결을 학교 주변 가게 후원으로 해결하기 위해 (행동) 총 47개 매장의 사장님을 만나 나눔행사의 취지를 설명하고, 동아리 단톡방, 페이스북 및 안내 팜플릿 홍보를 약속하여 (결과) 4개 매장의 후원을 이끌어 냄"></textarea>
                 <div class="warn">{{warn}}</div>
-                <div>
-                    <button type="button" @click="before3_2">이전단계</button>
-                    <button type="button" @click="after3_2">경험저장</button>
+                <div class="buttons">
+                    <button type="button" class="before" @click="before3_2">이전단계</button>
+                    <button type="button" class="before" @click="after3_2">경험저장</button>
                 </div>
             </div>
             <div class="experiences">
@@ -27,21 +29,25 @@
                     <div>나의경험</div>
                     <div>
                         <ul>
+                        <!--vuex에 저장된 나의 경험-->
                         <li v-if="isList" v-for="(data, index) in $store.state.list">
                             <span class="saveActivity" @click="showActivity(index)">{{data.activity}}</span>
-                            <button type="button" @click="delActivity(index)">X</button>
+                            <button type="button" class="delbtn" @click="delActivity(index)">X</button>
                         </li>
+                        <!--입력하고 있는 나의 경험-->
                         <li v-if="isOK">
                             <span class="myActivity">{{activity}}</span>
-                            <button type="button" @click="nullActivity">X</button>
+                            <button type="button" class="delbtn" @click="nullActivity">X</button>
                         </li>
                         <li v-else>
-                            <span class="myActivity">저장된 경험이 없어요 :(</span>
+                            <span v-if="isList" class="newActivity" @click="nullActivity">새로운 경험 작성하기</span>
+                            <span v-else class="myActivity">저장된 경험이 없어요 :(</span>
                         </li>
                         </ul>
                     </div>
                 </div>
-                <button type="submit" @click="save">저장 후 다음단계</button>
+                <button v-if="isList" type="button" class="saveBtn1" @click="save">저장 후 다음단계</button>
+                <button v-else type="button" class="saveBtn2" disabled> 저장 후 다음단계</button>
             </div>
         </div>
     </div>
@@ -55,25 +61,32 @@
                 activity:[], //활동명
                 content:[], //활동내용
                 warn:'',//유효성 검사
-                isOK:false,//활동명을 적었는지
-                isList:false//추가한 활동이 있는지
+                isOK:false,//활동명을 적고있는지
+                isList:false//vuex의 list에 값이 있는지
             }
         },
         created(){
+            /* vuex의 list에 값이 있는지 검사*/
             if(this.$store.state.list.length>=1){
                 this.isList=true;
             }
+            else{
+                this.isList=false;
+            }
         },
         methods:{
+            /* 수정하기 */
             before3_1(){
                 window.history.length > 1 ? this.$router.go(-1) :  this.$router.push({path:'/'});
             },
+            /* 다음단계 */
             after3_1(){
                 $(function(){
-                    $(".btn3_1").css("display","none");
-                    $(".tutorial3_2").css("display","block");
+                    $(".btn3_1").css("display","none"); //3-1 버튼 숨기기
+                    $(".tutorial3_2").css("display","block"); //tutorial3-2 보이기
                 });
             },
+            /* 활동명을 적을때 실시간으로 체크 */
             activity_input(){
                 if(this.activity.length>=1){
                     this.isOK=true;
@@ -82,43 +95,56 @@
                     this.isOK=false;
                 }
             },
+            /* 이전단계 */
             before3_2(){
-                $(".btn3_1").css("display","block");
-                $(".tutorial3_2").css("display","none");
+                $(".btn3_1").css("display","block"); //3-2 버튼 보이기
+                $(".tutorial3_2").css("display","none"); // tutorial3-2 숨기기
             },
+            /* 경험저장 */
             after3_2(){
                 if(this.activity.length>=1 && this.content.length>=1){
+                    /*vuex에 활동명, 활동내용 값 등록 */
                     this.$store.commit('editList', {
                         activity:this.activity,
                         content:this.content
                     });
                     console.log(this.$store.state.list);
                     
+                    /* 초기화 */
                     this.warn='';
                     this.activity='';
                     this.content='';
-                    console.log(this.activity);
-
-                    this.isList=true;
+                
+                    this.isList=true; 
                     this.isOK=false;
                 }
                 else{
                     this.warn="내용을 입력해주세요!";
                 }
             },
+            /* vuex에 저장한 나의 경험 삭제 */
             delActivity(i){
                 this.$store.state.list.splice(i,1);
+                if(this.$store.state.list.length>=1){
+                    this.isList=true;
+                }
+                else{
+                    this.isList=false;
+                }
             },
+            /* vuex에 저장한 나의 경험 보기 */
             showActivity(i){
                this.activity = this.$store.state.list[i].activity;
                this.content = this.$store.state.list[i].content;
             },
+            /* 입력하고 있는 나의 경험 삭제*/
             nullActivity(){
                 this.activity='';
                 this.content='';
                 this.warn='';
                 this.isOK=false;
             },
+            /* 저장 후 다음 단계 */
             save(){
                 this.$router.push({
                     name: 'Tutorial4'
@@ -227,11 +253,45 @@ textarea{
     font-size:10pt;
     margin-top:5%;
 }
+.buttons{
+    margin-top:5%;
+    text-align:center;
+}
 .myActivity{
-    color:gray;
+    color:#aaaaaa;
+}
+.newActivity{
+   .myActivity;
+   cursor:pointer; 
+}
+.delbtn{
+    border:0;
+    background-color:white;
+    color:#aaaaaa;
+    cursor:pointer; 
 }
 .saveActivity{
     color:black;
     cursor:pointer;
+}
+.saveBtn1{
+    margin-top:2%;
+    background-color:#00c854;
+    color:white;
+    border:1px solid #00c854;
+    width:100%;
+    height:50px;
+}
+.saveBtn1:hover{
+    background-color:#099c47;
+    border:1px solid #099c47;
+}
+.saveBtn2{
+    margin-top:2%;
+    background-color:#eeeeee;
+    color:gray;
+    border:1px solid #aaaaaa;
+    width:100%;
+    height:50px;
 }
 </style>

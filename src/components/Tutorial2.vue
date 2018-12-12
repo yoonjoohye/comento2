@@ -20,18 +20,21 @@
         name:'Tutorial2',
         data(){
             return{
-                message:'',
-                warn:''
+                message:'', //강점 정의
+                warn:'' //유효성 검사
             }
         },
         methods:{
+            /*이전단계 */
             before(){
                 window.history.length > 1 ? this.$router.go(-1) :  this.$router.push({path:'/'})
             },
+            /*저장 후 다음단계*/
             after(){
                 if(this.message.length>=1){
+                    /*vuex에 강점 정의 값 등록 */
                     this.$store.state.message=this.message;
-                    //alert(this.$store.state.message);
+                    /* tutorial3로 이동*/
                     this.$router.push({
                         name: 'Tutorial3'
                     });

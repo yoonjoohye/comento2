@@ -10,7 +10,7 @@
     <div class="warn">{{warn}}</div>
     <div class="buttons">
       <button type="button" class="before" @click="before">이전단계</button>
-      <button type="button" class="after" @click="after">저장 후 다음 단계</button>
+      <button type="button" class="after" @click="after">저장 후 다음단계</button>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     } 
   },
   methods:{
-    /*체크박스 유효성 검사(가장 최근에 체크한 값만 들어갈 수 있게함)*/
+    /*체크박스 유효성 검사(가장 최근에 체크한 값 외 자르기)*/
     check(){
       if(this.isChecked.length>1){
         this.isChecked.splice(0,this.isChecked.length-1);
@@ -35,11 +35,12 @@ export default {
     before(){
       window.history.length > 1 ? this.$router.go(-1) :  this.$router.push({path:'/'})
     },
-    /*vuex에 바뀐 값 넣기 & 2단계로 넘어가기*/
+    /*저장 후 다음단계*/
     after(){
       if(this.isChecked.length==1){
-        //console.log(this.isChecked);
+        /* vuex에 가장 최근에 체크한 값 등록 */
         this.$store.commit('editStrength', this.isChecked);
+        /* tutorial2로 이동 */
         this.$router.push({
           name: 'Tutorial2'
         });
