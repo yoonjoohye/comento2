@@ -63,11 +63,11 @@
     .tutorial4_title{
         text-align:left;
         font-size:13pt;
-        margin-top:3%;
-        margin-bottom:3%;
     }
     .allBtn{
         text-align:left;
+        margin-top:1%;
+        margin-bottom:1%;
     }
     .btns{
         display:inline-block;
@@ -86,7 +86,7 @@
         text-align:left;
         border:0;
         background-color:#eeeeee;
-        margin-top:2%;
+        margin-top:1%;
         margin-bottom:2%;
     }
     .list2{

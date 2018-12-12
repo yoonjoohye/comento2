@@ -69,9 +69,8 @@
 }
 .content1{
     text-align:left;
-     font-size:18pt;
+    font-size:18pt;
     font-weight:bold;
-   
 }
 .content2{
     text-align:right;
