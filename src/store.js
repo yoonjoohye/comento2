@@ -23,11 +23,15 @@ export default new Vuex.Store({
             "계획/조직화"
         ],
         strength:'',
-        message:''
+        message:'',
+        list:[]
     },
     mutations:{
         editStrength:function(state, payload){
             state.strength = payload[0];
+        },
+        editList:function(state,payload){
+            state.list.push(payload);
         }
     }
 });
