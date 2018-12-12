@@ -26,7 +26,7 @@
             </div>
             <div class="experiences">
                 <div class="experience">
-                    <div>나의경험</div>
+                    <div class="myEx">나의경험</div>
                     <div>
                         <ul>
                         <!--vuex에 저장된 나의 경험-->
@@ -226,6 +226,7 @@ input[type="text"]{
 }
 .highlight{
     font-weight:bold;
+    font-size:18pt;
 }
 .experience_input{
     width:70%;
@@ -239,6 +240,9 @@ input[type="text"]{
 .experience{
     width:100%;
     border:1px solid #aaaaaa;
+}
+.myEx{
+    border-bottom:1px solid #aaaaaa;
 }
 textarea{
     margin-top:5%;

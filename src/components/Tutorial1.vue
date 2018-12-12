@@ -3,9 +3,10 @@
     <div class="tutorial_title">
       <span class='tutorial1_title'>작성한 우수자의 모습 중 한 가지와 관련된 나의 강점을 하나 선택하세요.</span>
     </div>
+    <!--선택할 강점들-->
     <div class="abilities" v-for="(data) in $store.state.ability">
       <input type="checkbox" v-bind:id="data" v-bind:value="data" v-model="isChecked" @change="check">
-      <label v-bind:for="data"><span class="ability">{{data}}</span></label>
+      <label v-bind:for="data"><span class="checkbox"></span><span class="ability">{{data}}</span></label>
     </div>
     <div class="warn">{{warn}}</div>
     <div class="buttons">
@@ -76,15 +77,24 @@ export default {
     display:inline-block;
     width:30%;
   }
-  input[type="checkbox"]{
-    width:20px;
-    height:20px;
+  input[type="checkbox"] + label span.checkbox {
+    display: inline-block;
+    text-align:center;
+    width: 30px;
+    height: 30px;
+    background-color:#eeeeee;
+    color:#aaaaaa;
     cursor: pointer;
   }
-  input[type="checkbox"]:checked{
-      color: #00c854;
-      background: #fff;
-      border-color: #00c854;
+  input[type="checkbox"]+label span.checkbox:before{
+    content: '\2714';
+  }
+  input[type="checkbox"]:checked+label span.checkbox{
+    background-color:#00c854;
+    color:white;
+  }
+  input[type="checkbox"]{
+    display:none;
   }
   .ability{
     cursor: pointer;

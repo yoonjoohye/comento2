@@ -43,7 +43,7 @@
             },
             /* 다음단계 */
             after(){
-                alert("끝입니다요!");
+                alert("마지막 페이지입니다!");
             }
         }
     }
@@ -66,7 +66,7 @@
     }
     .allBtn{
         text-align:left;
-        margin-top:1%;
+        margin-top:2%;
         margin-bottom:1%;
     }
     .btns{
@@ -86,7 +86,6 @@
         text-align:left;
         border:0;
         background-color:#eeeeee;
-        margin-top:1%;
         margin-bottom:2%;
     }
     .list2{
@@ -96,6 +95,7 @@
         border:0;
         background-color:#eeeeee;
         font-size:12pt;
+        margin-bottom:2%;
     }
     .title{
         font-weight:bold;

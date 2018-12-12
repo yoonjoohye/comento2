@@ -21,15 +21,17 @@ export default new Vuex.Store({
             "열정/근성",
             "대인관계 (신뢰, 친화력)",
             "계획/조직화"
-        ],
-        strength:'',
-        message:'',
-        list:[]
+        ],//보기에 보여줄 강점들
+        strength:'', //선택한 강점
+        message:'',// 강점 정의
+        list:[] //활동명, 활동내용
     },
     mutations:{
+        /*strength(선택한 강점) 업데이트 */
         editStrength:function(state, payload){
             state.strength = payload[0];
         },
+        /*list(활동명, 활동내용) 업데이트 */
         editList:function(state,payload){
             state.list.push(payload);
         }
