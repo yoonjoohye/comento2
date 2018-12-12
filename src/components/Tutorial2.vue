@@ -11,7 +11,7 @@
         <div class="warn">{{warn}}</div>
         <div class="buttons">
             <button type="button" class="before" @click="before">이전단계</button>
-            <button type="submit" class="after" @click="after">저장 후 다음 단계</button>
+            <button type="button" class="after" @click="after">저장 후 다음단계</button>
         </div>
     </div>
 </template>

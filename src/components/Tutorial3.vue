@@ -19,7 +19,7 @@
                 <div class="warn">{{warn}}</div>
                 <div>
                     <button type="button" @click="before3_2">이전단계</button>
-                    <button type="button" @click="after3_2">경험 저장</button>
+                    <button type="button" @click="after3_2">경험저장</button>
                 </div>
             </div>
             <div class="experiences">
@@ -28,12 +28,12 @@
                     <div>
                         <ul>
                         <li v-if="isList" v-for="(data, index) in $store.state.list">
-                            <span class="saveActivity">{{data.activity}}</span>
+                            <span class="saveActivity" @click="showActivity(index)">{{data.activity}}</span>
                             <button type="button" @click="delActivity(index)">X</button>
                         </li>
                         <li v-if="isOK">
                             <span class="myActivity">{{activity}}</span>
-                            <button type="button">X</button>
+                            <button type="button" @click="nullActivity">X</button>
                         </li>
                         <li v-else>
                             <span class="myActivity">저장된 경험이 없어요 :(</span>
@@ -52,11 +52,11 @@
         name:'Tutorial3',
         data(){
             return{
-                activity:[],
-                content:[],
-                warn:'',
-                isOK:false,
-                isList:false
+                activity:[], //활동명
+                content:[], //활동내용
+                warn:'',//유효성 검사
+                isOK:false,//활동명을 적었는지
+                isList:false//추가한 활동이 있는지
             }
         },
         created(){
@@ -108,6 +108,16 @@
             },
             delActivity(i){
                 this.$store.state.list.splice(i,1);
+            },
+            showActivity(i){
+               this.activity = this.$store.state.list[i].activity;
+               this.content = this.$store.state.list[i].content;
+            },
+            nullActivity(){
+                this.activity='';
+                this.content='';
+                this.warn='';
+                this.isOK=false;
             },
             save(){
                 this.$router.push({
@@ -222,5 +232,6 @@ textarea{
 }
 .saveActivity{
     color:black;
+    cursor:pointer;
 }
 </style>
