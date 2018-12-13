@@ -77,7 +77,7 @@
     font-size:18pt;
     font-weight:bold;
 }
-.meaning{
+textarea.meaning{
     width:100%;
     height:150px;
     border:1.5px solid @text-color;

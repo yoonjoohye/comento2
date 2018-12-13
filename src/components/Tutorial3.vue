@@ -17,7 +17,7 @@
                 <div>
                     <span class="tutorial3_2_title">{{this.$store.state.strength}}을(를) 발휘한 에피소드를 자세히 알려주세요.</span>
                 </div>
-                <textarea v-model="content" placeholder="(상황) 동아리 연말 나눔행사의 예산 부족 문제 해결을 학교 주변 가게 후원으로 해결하기 위해 (행동) 총 47개 매장의 사장님을 만나 나눔행사의 취지를 설명하고, 동아리 단톡방, 페이스북 및 안내 팜플릿 홍보를 약속하여 (결과) 4개 매장의 후원을 이끌어 냄"></textarea>
+                <textarea v-model="content" class="textarea" placeholder="(상황) 동아리 연말 나눔행사의 예산 부족 문제 해결을 학교 주변 가게 후원으로 해결하기 위해 (행동) 총 47개 매장의 사장님을 만나 나눔행사의 취지를 설명하고, 동아리 단톡방, 페이스북 및 안내 팜플릿 홍보를 약속하여 (결과) 4개 매장의 후원을 이끌어 냄"></textarea>
                 <div class="warn">{{warn}}</div>
                 <div class="buttons">
                     <button type="button" class="before" @click="before3_2">이전단계</button>
@@ -108,13 +108,12 @@
                         activity:this.activity,
                         content:this.content
                     });
-                    console.log(this.$store.state.list);
+                    //console.log(this.$store.state.list);
                     
                     /* 초기화 */
                     this.warn='';
                     this.activity='';
                     this.content='';
-                
                     this.isList=true; 
                     this.isOK=false;
                 }
@@ -245,7 +244,7 @@ input[type="text"]{
 .myEx{
     border-bottom:1px solid #aaaaaa;
 }
-textarea{
+.textarea{
     margin-top:5%;
     width:100%;
     height:150px;
@@ -265,6 +264,7 @@ textarea{
 .myActivity{
     color:#aaaaaa;
     float:left;
+    text-align:left;
     width:70%;
 }
 .newActivity{
@@ -274,6 +274,7 @@ textarea{
 .saveActivity{
     float:left;
     width:70%;
+    text-align:left;
     color:black;
     word-wrap: break-word;
     cursor:pointer;

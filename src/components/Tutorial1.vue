@@ -79,6 +79,7 @@ export default {
   }
   input[type="checkbox"] + label span.checkbox {
     display: inline-block;
+    margin-right:1%;
     text-align:center;
     width: 30px;
     height: 30px;
