@@ -31,17 +31,17 @@
                         <ul>
                         <!--vuex에 저장된 나의 경험-->
                         <li v-if="isList" v-for="(data, index) in $store.state.list">
-                            <span class="saveActivity" @click="showActivity(index)">{{data.activity}}</span>
+                            <span class="saveActivity" v-line-clamp="1" @click="showActivity(index)">{{data.activity}}</span>
                             <button type="button" class="delbtn" @click="delActivity(index)">X</button>
                         </li>
                         <!--입력하고 있는 나의 경험-->
                         <li v-if="isOK">
-                            <span class="myActivity">{{activity}}</span>
+                            <span class="myActivity" v-line-clamp:3="1">{{activity}}</span>
                             <button type="button" class="delbtn" @click="nullActivity">X</button>
                         </li>
                         <li v-else>
-                            <span v-if="isList" class="newActivity" @click="nullActivity">새로운 경험 작성하기</span>
-                            <span v-else class="myActivity">저장된 경험이 없어요 :(</span>
+                            <span v-if="isList" class="newActivity" v-line-clamp:3="1" @click="nullActivity">새로운 경험 작성하기</span>
+                            <span v-else class="myActivity" v-line-clamp:3="1">저장된 경험이 없어요 :(</span>
                         </li>
                         </ul>
                     </div>
@@ -176,6 +176,7 @@
     text-align:left;
     border:0;
     background-color:#eeeeee;
+    word-wrap: break-word;
     font-size:13pt;
     margin-bottom:5%;
 }
@@ -263,20 +264,26 @@ textarea{
 }
 .myActivity{
     color:#aaaaaa;
+    float:left;
+    width:70%;
 }
 .newActivity{
-   .myActivity;
-   cursor:pointer; 
+    .myActivity;
+    cursor:pointer; 
+}
+.saveActivity{
+    float:left;
+    width:70%;
+    color:black;
+    word-wrap: break-word;
+    cursor:pointer;
 }
 .delbtn{
+    width:25%;
     border:0;
     background-color:white;
     color:#aaaaaa;
     cursor:pointer; 
-}
-.saveActivity{
-    color:black;
-    cursor:pointer;
 }
 .saveBtn1{
     margin-top:2%;

@@ -78,7 +78,10 @@
         height:50px;
         background-color:white;
         color:#888888;
-        border:1px solid #bbbbbb;
+        font-size:15pt;
+        font-weight:bold;
+        border:1.5px solid #bbbbbb;
+        cursor:pointer;
     }
     .list1{
         width:100%;
@@ -87,6 +90,7 @@
         border:0;
         background-color:#eeeeee;
         margin-bottom:2%;
+        word-wrap: break-word;
     }
     .list2{
         width:100%;
@@ -96,12 +100,15 @@
         background-color:#eeeeee;
         font-size:12pt;
         margin-bottom:2%;
+        word-wrap: break-word;
     }
-    .title{
+    span.title{
         font-weight:bold;
         font-size:15pt;
     }
-    .content{
+    li.content{
+        margin-top:2%;
+        margin-bottom:2%;
         font-size:11pt;
     }
     .buttons{

@@ -34,7 +34,7 @@ export default {
     },
     /*이전단계*/
     before(){
-      window.history.length > 1 ? this.$router.go(-1) :  this.$router.push({path:'/'})
+      alert("더이상 페이지가 없습니다!");
     },
     /*저장 후 다음단계*/
     after(){
