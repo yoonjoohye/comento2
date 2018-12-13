@@ -68,11 +68,13 @@
     width:100%;
 }
 .content1{
+    width:100%;
     text-align:left;
     font-size:18pt;
     font-weight:bold;
 }
 .content2{
+    width:100%;
     text-align:right;
     font-size:18pt;
     font-weight:bold;
