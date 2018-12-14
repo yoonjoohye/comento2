@@ -8,7 +8,7 @@
             <textarea class="meaning" v-model="message" placeholder="의사소통능력 / 단순히 내가 하고싶은 말을 상대방에게 잘 전달하는 것이 아니라, 상대가 공동의 문제에 공감하게 하고 협력을 이끌어 낼 수 있는 것"></textarea>
             <div class="content2">이라고 생각해요.</div>
         </div>
-        <div class="warn">{{warn}}</div>
+        <div v-if="isWarn" class="warn">내용을 입력해주세요!</div>
         <div class="buttons">
             <button type="button" class="before" @click="before">이전단계</button>
             <button type="button" class="after" @click="after">저장 후 다음단계</button>
@@ -21,7 +21,7 @@
         data(){
             return{
                 message:'', //강점 정의
-                warn:'' //유효성 검사
+                isWarn:false //유효성 검사
             }
         },
         methods:{
@@ -40,7 +40,7 @@
                     });
                 }
                 else{
-                    this.warn="내용을 입력해주세요!";
+                    this.isWarn=true;
                 }
             }
         }

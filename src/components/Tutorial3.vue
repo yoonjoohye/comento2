@@ -18,7 +18,7 @@
                     <span class="tutorial3_2_title">{{this.$store.state.strength}}을(를) 발휘한 에피소드를 자세히 알려주세요.</span>
                 </div>
                 <textarea v-model="content" class="textarea" placeholder="(상황) 동아리 연말 나눔행사의 예산 부족 문제 해결을 학교 주변 가게 후원으로 해결하기 위해 (행동) 총 47개 매장의 사장님을 만나 나눔행사의 취지를 설명하고, 동아리 단톡방, 페이스북 및 안내 팜플릿 홍보를 약속하여 (결과) 4개 매장의 후원을 이끌어 냄"></textarea>
-                <div class="warn">{{warn}}</div>
+                <div v-if="isWarn" class="warn">내용을 입력해주세요!</div>
                 <div class="buttons">
                     <button type="button" class="before" @click="before3_2">이전단계</button>
                     <button type="button" class="before" @click="after3_2">경험저장</button>
@@ -60,7 +60,7 @@
             return{
                 activity:[], //활동명
                 content:[], //활동내용
-                warn:'',//유효성 검사
+                isWarn:false,//유효성 검사
                 isOK:false,//활동명을 적고있는지
                 isList:false//vuex의 list에 값이 있는지
             }
@@ -111,14 +111,14 @@
                     //console.log(this.$store.state.list);
                     
                     /* 초기화 */
-                    this.warn='';
                     this.activity='';
                     this.content='';
+                    this.isWarn=false;
                     this.isList=true; 
                     this.isOK=false;
                 }
                 else{
-                    this.warn="내용을 입력해주세요!";
+                    this.isWarn=true;
                 }
             },
             /* vuex에 저장한 나의 경험 삭제 */
@@ -135,12 +135,14 @@
             showActivity(i){
                this.activity = this.$store.state.list[i].activity;
                this.content = this.$store.state.list[i].content;
+
+               this.isWarn=false;
             },
             /* 입력하고 있는 나의 경험 삭제*/
             nullActivity(){
                 this.activity='';
                 this.content='';
-                this.warn='';
+                this.isWarn=false;
                 this.isOK=false;
             },
             /* 저장 후 다음 단계 */

@@ -8,7 +8,7 @@
       <input type="checkbox" v-bind:id="data" v-bind:value="data" v-model="isChecked" @change="check">
       <label v-bind:for="data"><span class="checkbox"></span><span class="ability">{{data}}</span></label>
     </div>
-    <div class="warn">{{warn}}</div>
+    <div v-if="isWarn" class="warn">강점을 선택해주세요!</div>
     <div class="buttons">
       <button type="button" class="before" @click="before">이전단계</button>
       <button type="button" class="after" @click="after">저장 후 다음단계</button>
@@ -22,7 +22,7 @@ export default {
   data () {
     return{
       isChecked:[], //체크한 값
-      warn:'' //유효성 검사
+      isWarn:false //유효성 검사
     } 
   },
   methods:{
@@ -47,7 +47,7 @@ export default {
         });
       }
       else{
-        this.warn="강점을 선택해주세요!";
+        this.isWarn=true;
       }
     }
   }
