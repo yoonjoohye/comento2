@@ -67,6 +67,7 @@ export default {
   .tutorial_title{
     margin-bottom:5%;
   }
+  /*제목에 밑줄 넣기*/
   .tutorial1_title{
     background: linear-gradient(180deg,#fff 70%,#fffcc0 0);
     padding: 0 1%;
@@ -77,6 +78,7 @@ export default {
     display:inline-block;
     width:30%;
   }
+  /*가짜 체크박스 만들기*/
   input[type="checkbox"] + label span.checkbox {
     display: inline-block;
     margin-right:1%;
@@ -87,13 +89,16 @@ export default {
     color:#aaaaaa;
     cursor: pointer;
   }
+  /*가짜 체크박스에 체크모양 넣기*/
   input[type="checkbox"]+label span.checkbox:before{
     content: '\2714';
   }
+  /*가짜 체크박스 체크하면 초록색으로 변경*/
   input[type="checkbox"]:checked+label span.checkbox{
     background-color:#00c854;
     color:white;
   }
+  /*진짜 체크박스 숨기기*/
   input[type="checkbox"]{
     display:none;
   }

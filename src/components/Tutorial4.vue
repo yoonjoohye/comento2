@@ -2,6 +2,7 @@
     <div id="tutorial4">
         <div class="tutorial4_title">당신이 생각하는 {{this.$store.state.strength}}이(가) 뛰어나게 발휘된 경험들을 다시 읽어보세요.</div>
         <div class="allBtn">
+            <!--vuex의 list 수만큼 버튼 생성-->
             <div class="btns" v-for="(data,index) in $store.state.list">
                 <button type="button" class="btn" @click="showActivity(index)">{{index+1}}</button>
             </div>

@@ -9,6 +9,7 @@
         </div>
         <!-- tutorial 3-2 -->
         <div class="tutorial3_2">
+            <!--tutorial 3-2의 나의 경험 입력영역-->
             <div class="experience_input">
                 <div>
                     <span class="tutorial3_2_title">언제 {{this.$store.state.strength}}을(를) 뛰어나게 발휘했나요?</span>
@@ -24,6 +25,7 @@
                     <button type="button" class="before" @click="after3_2">경험저장</button>
                 </div>
             </div>
+            <!--tutorial 3-2의 나의 경험영역-->
             <div class="experiences">
                 <div class="experience">
                     <div class="myEx">나의경험</div>
@@ -82,7 +84,7 @@
             /* 다음단계 */
             after3_1(){
                 $(function(){
-                    $(".btn3_1").css("display","none"); //3-1 버튼 숨기기
+                    $(".btn3_1").css("display","none"); //tutorial3-1 버튼 숨기기
                     $(".tutorial3_2").css("display","block"); //tutorial3-2 보이기
                 });
             },
@@ -97,7 +99,7 @@
             },
             /* 이전단계 */
             before3_2(){
-                $(".btn3_1").css("display","block"); //3-2 버튼 보이기
+                $(".btn3_1").css("display","block"); //tutorial3-1 버튼 보이기
                 $(".tutorial3_2").css("display","none"); // tutorial3-2 숨기기
             },
             /* 경험저장 */
@@ -140,6 +142,7 @@
             },
             /* 입력하고 있는 나의 경험 삭제*/
             nullActivity(){
+                /*초기화 */
                 this.activity='';
                 this.content='';
                 this.isWarn=false;
