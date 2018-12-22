@@ -32,9 +32,15 @@
                 content:this.$store.state.list[0].content //vuex에 저장된 첫번째 활동내용
             }
         },
+        mounted(){
+            $($('.btn')[0]).addClass('on');
+        },
         methods:{
             /*숫자버튼 누르면 vuex에 저장된 활동명과 활동내용 보이기*/
             showActivity(i){
+                $('.btn').removeClass('on');
+                $($('.btn')[i]).addClass('on');
+
                 this.activity=this.$store.state.list[i].activity;
                 this.content=this.$store.state.list[i].content;
             },
@@ -83,6 +89,10 @@
         font-weight:bold;
         border:1.5px solid #bbbbbb;
         cursor:pointer;
+    }
+    .on{
+        border:1.5px solid #00c854;
+        color:#00c854;
     }
     .list1{
         width:100%;
